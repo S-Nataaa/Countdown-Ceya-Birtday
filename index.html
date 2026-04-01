@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Countdown Ceya Birtday</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(-45deg, #fbcfe8, #f472b6, #e9d5ff, #93c5fd);
+            background-size: 400% 400%;
+            animation: gradientAnimation 15s ease infinite;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            color: #333;
+            text-align: center;
+            position: relative;
+        }
+
+        @keyframes gradientAnimation {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .countdown-container {
+            background: rgba(255, 255, 255, 0.85);
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            backdrop-filter: blur(5px);
+            
+            width: 90%; 
+            max-width: 600px; 
+        }
+
+        h1 {
+            color: #db2777;
+            margin-bottom: 30px;
+            font-size: 1.8rem;
+        }
+
+        .timer {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap; 
+        }
+
+        .time-box {
+            background: rgba(251, 207, 232, 0.6);
+            padding: 20px;
+            border-radius: 15px;
+            min-width: 80px;
+            box-shadow: inset 0 -3px 0 rgba(0,0,0,0.05);
+        }
+
+        .time-box span {
+            display: block;
+            font-size: 2.5rem;
+            font-weight: 600;
+            color: #db2777;
+        }
+
+        .time-box p {
+            margin: 5px 0 0;
+            font-size: 0.9rem;
+            color: #831843;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        #message {
+            display: none;
+            color: #db2777;
+            margin-top: 20px;
+            font-size: 2rem;
+            animation: popIn 0.5s ease-out forwards;
+        }
+
+        @keyframes popIn {
+            0% { transform: scale(0.8); opacity: 0; }
+            100% { transform: scale(1); opacity: 1; }
+        }
+
+        .footer {
+            position: absolute;
+            bottom: 20px;
+            color: #831843;
+            font-size: 0.95rem;
+            font-weight: 600;
+            letter-spacing: 1px;
+            opacity: 0.8;
+        }
+
+        @media (max-width: 480px) {
+            .countdown-container {
+                padding: 30px 20px; 
+            }
+
+            h1 {
+                font-size: 1.4rem; 
+                margin-bottom: 20px;
+            }
+
+            .timer {
+                gap: 10px; 
+            }
+
+            .time-box {
+                flex: 1 1 40%; 
+                padding: 15px 10px;
+                min-width: auto;
+            }
+
+            .time-box span {
+                font-size: 2rem; 
+            }
+
+            .time-box p {
+                font-size: 0.8rem; 
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="countdown-container">
+        <h1>Countdown Ceyaaa Manyun Birtdayyy 🎂</h1>
+        
+        <div class="timer" id="timer-display">
+            <div class="time-box"><span id="days">0</span><p>Days</p></div>
+            <div class="time-box"><span id="hours">0</span><p>hours</p></div>
+            <div class="time-box"><span id="minutes">0</span><p>min</p></div>
+            <div class="time-box"><span id="seconds">0</span><p>sec</p></div>
+        </div>
+        
+        <h2 id="message">>Happy Birtdayyy My Lovee! 🎉</h2>
+    </div>
+
+    <div class="footer">create by someone ✨</div>
+
+    <script>
+        const targetDate = new Date("May 6, 2026 00:00:00").getTime();
+
+        const countdown = setInterval(() => {
+            const now = new Date().getTime();
+            const distance = targetDate - now;
+
+            if (distance < 0) {
+                clearInterval(countdown);
+                document.getElementById("timer-display").style.display = "none";
+                document.getElementById("message").style.display = "block";
+                return;
+            }
+
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            document.getElementById("days").innerText = days;
+            document.getElementById("hours").innerText = hours;
+            document.getElementById("minutes").innerText = minutes;
+            document.getElementById("seconds").innerText = seconds;
+        }, 1000);
+    </script>
+</body>
+</html>
